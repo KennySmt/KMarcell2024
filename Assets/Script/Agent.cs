@@ -7,6 +7,8 @@ public class Agent : MonoBehaviour
 {
     [SerializeField, HideInInspector] NavMeshAgent navMeshAgent;
     [SerializeField] float startHealth = 100;
+    [SerializeField] int agentValue = 10;
+    [SerializeField] int agentDamage = 10;
 
     float health;
 
@@ -35,6 +37,7 @@ public class Agent : MonoBehaviour
 
     public void OnHitEndPoint()
     {
+        GameManager.instance.Damage(agentDamage);
         Destroy(gameObject);
     }
 
@@ -44,7 +47,7 @@ public class Agent : MonoBehaviour
         HealthChanged?.Invoke();
         if (health <= 0)
         {
-            Debug.Log("Agent died");
+            GameManager.instance.Money += agentValue;
             Destroy(gameObject);
         }
     }

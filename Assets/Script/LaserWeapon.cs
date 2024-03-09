@@ -56,13 +56,16 @@ public class LaserWeapon : MonoBehaviour
         lineRenderer.enabled = closest != null;
         if (closest == null) return;
 
+        lineRenderer.positionCount = 2;
+        /*
         lineRenderer.positionCount = laserPointCount;
         for (int i = 0; i < laserPointCount; i++)
         {
-            lineRenderer.SetPosition(i, Vector3.Lerp(transform.position, closest.transform.position, 1f/ (laserPointCount-1)));
+            lineRenderer.SetPosition(i, Vector3.Lerp(transform.position, closest.transform.position, 1f/ (float)laserPointCount-i));
         }
-        //lineRenderer.SetPosition(0, transform.position);
-        //lineRenderer.SetPosition(1, closest.transform.position);
+        */
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, closest.transform.position);
     }
 
     void OnDrawGizmosSelected()
