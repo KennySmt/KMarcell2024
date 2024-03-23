@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AgentSpawner : MonoBehaviour
 {
-    [SerializeField] Agent agentPrefab;
+    [SerializeField] Agent[] agentPrefabs;
     [SerializeField] int count = 10;
     [SerializeField] float duration = 1;
 
@@ -24,6 +24,8 @@ public class AgentSpawner : MonoBehaviour
 
     void Spawn()
     {
+        int randomIndex = Random.Range(0, agentPrefabs.Length);
+        Agent agentPrefab = agentPrefabs[randomIndex];
         Agent agent = Instantiate(agentPrefab,transform.position,transform.rotation,transform);
     }
 }
